@@ -1,0 +1,12 @@
+# robots.txt для v2raytun.de
+User-agent: *
+Allow: /
+
+# Яндекс любит явный Host
+Host: v2raytunvpn.xyz
+
+# Sitemap — укажем карту с home.html
+Sitemap: https://v2raytunvpn.xyz/sitemap.xml
+
+# Небольшая вежливая пауза
+Crawl-delay: 1
