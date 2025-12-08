@@ -4,9 +4,19 @@
   <meta charset="utf-8">
   <title>Проверка доступа</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Роботам: саму заглушку не индексируем, но ссылки разрешаем -->
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Верификация Яндекса (как у вас) -->
+  <meta name="yandex-verification" content="04cac15d2d675cab">
+
+  <!-- Цветовая тема -->
   <meta name="color-scheme" content="dark">
-  <meta name="yandex-verification" content="04cac15d2d675cab" />
+
+  <!-- Важно: на основную страницу с контентом -->
+  <link rel="canonical" href="https://v2raytun.de/home.html">
+
   <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
 
   <style>
@@ -25,9 +35,11 @@
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
       min-height:100dvh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
     }
-    .title{margin:0 0 20px;font-weight:600;line-height:1.35}
+    .title{margin:0 0 16px;font-weight:600;line-height:1.35}
     .wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px}
-    #flagTarget{margin-bottom:20px}
+    .fallback{margin:6px 0 18px}
+    .fallback a{color:#fff;text-decoration:underline;font-weight:600}
+    #flagTarget{margin:12px 0 18px}
     .sample{border:2px solid var(--ring);border-radius:var(--radius);transform:rotate(.5turn);display:inline-block;vertical-align:middle}
     #flagOptions{display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
     #flagOptions img.option{
@@ -46,12 +58,16 @@
       Выберите изображение, совпадающее с образцом флага:
     </h2>
 
+    <!-- ВАЖНО: видимая ссылка для людей и робота -->
+    <p class="fallback">Если проверка недоступна — перейдите на основную страницу: <a href="home.html">home.html</a></p>
+
     <div id="flagTarget" aria-live="polite"></div>
     <p>Доступные варианты:</p>
     <div id="flagOptions"></div>
   </div>
 
-  <noscript>Чтобы продолжить, включите JavaScript в настройках браузера.</noscript>
+  <!-- ВАЖНО: ссылка для пользователей без JS -->
+  <noscript>Для продолжения включите JavaScript или откройте основную страницу: <a href="home.html">home.html</a></noscript>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -80,7 +96,7 @@
         const a = arr.slice();
         for (let i = a.length - 1; i > 0; i--){
           const j = randInt(i + 1);
-          const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+          [a[i], a[j]] = [a[j], a[i]];
         }
         return a;
       }
@@ -119,18 +135,19 @@
       }
     });
   </script>
-  <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105570131', 'ym');
 
-    ym(105570131, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/105570131" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j=0;j<document.scripts.length;j++){ if (document.scripts[j].src===r) { return; } }
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=105570211', 'ym');
+
+    ym(105570211, 'init', { ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/105570211" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+  <!-- /Yandex.Metrika counter -->
 </body>
 </html>
